@@ -22,5 +22,26 @@ npm install @types/cors
 npm install bcrypt cors dotenv @types/bcrypt @types/cors @types/dotenv
 npm install nodemon --save-dev
 npm install pg
+npm install axios
+npm install typeorm @nestjs/typeorm pg
 
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    text VARCHAR(255) NOT NULL,
+    sender_id INTEGER REFERENCES users(id) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+INSERT INTO messages (text, sender_id)
+VALUES ('Hello, how are you today?', 1);
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(20) UNIQUE NOT NULL CHECK (LENGTH(username) >= 3),
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL CHECK (LENGTH(password) >= 8)
+);
+INSERT INTO users (username, email, password)
+VALUES ('example_user', 'example@example.com', 'password123');
 */
