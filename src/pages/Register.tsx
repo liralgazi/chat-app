@@ -140,7 +140,7 @@ export default function Register() {
             onChange={(event) => setName(event.target.value)}
           />
           <Button
-            variant="contained"
+            variant="outlined"
             color="primary"
             style={{ marginTop: "1rem" }}
             onClick={clickHandler}
