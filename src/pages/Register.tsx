@@ -153,7 +153,7 @@ export default function Register() {
             Please Enter Your Name
           </Typography>
           <TextField
-            label="Your Name"
+            label="Username"
             variant="outlined"
             fullWidth
             value={name}
