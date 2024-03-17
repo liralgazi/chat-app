@@ -1,22 +1,13 @@
+// Chat.tsx
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
-
-interface ChatProps {
-  name: string;
-}
-
-interface Message {
-  id: number;
-  text: string;
-  sender: string;
-  createdAt: Date;
-}
+import MessageBox from "./MessageBox"; // Import MessageBox
+import { Message } from "./Message"; // Import the Message type
 
 const Chat = () => {
   const location = useLocation();
-  // Assume we have a state with the name property passed to this route
-  const { name } = location.state as { name: string };
+  const name = location.state.name; // The name passed through route state
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
@@ -26,7 +17,7 @@ const Chat = () => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
+        const data: Message[] = await response.json(); // Type assertion
         setMessages(data);
       } catch (error) {
         console.error("Error fetching messages:", error);
@@ -38,19 +29,12 @@ const Chat = () => {
 
   return (
     <Box>
-      <Typography variant="h5">Welcome, {name}!</Typography>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        Welcome, {name}!
+      </Typography>
       <Box>
         {messages.map((message) => (
-          <div key={message.id}>
-            <Typography
-              color={message.sender === name ? "primary" : "textSecondary"}
-            >
-              {message.sender}: {message.text}
-            </Typography>
-            <Typography variant="caption">
-              {new Date(message.createdAt).toLocaleTimeString()}
-            </Typography>
-          </div>
+          <MessageBox key={message.id} message={message} />
         ))}
       </Box>
     </Box>

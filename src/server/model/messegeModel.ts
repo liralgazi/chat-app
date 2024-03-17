@@ -22,4 +22,4 @@ export class MessageModel {
     updated_at = new Date();
 }
 
-export { createPostgresConnection, remultExpress, MessageModel as Messege };
+export { createPostgresConnection, remultExpress, MessageModel as Message };

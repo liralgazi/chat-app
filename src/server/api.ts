@@ -1,6 +1,6 @@
 import { remultExpress } from "remult/remult-express";
 import { createPostgresConnection } from "remult/postgres";
-import { Messege } from '../server/model/messegeModel'
+import { Message } from '../server/model/messegeModel'
 const host = "http://localhost:5000";
 export const registerRoute = `${host}/api/auth/register`;
 
@@ -27,5 +27,5 @@ const postgresConnection = createConnection();
 // Configure the api with remultExpress, using the PostgreSQL connection as the dataProvider
 export const api = remultExpress({
     dataProvider: postgresConnection,
-    entities: [Messege],
+    entities: [Message],
 });
