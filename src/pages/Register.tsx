@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLockOutline } from "@mdi/js";
+import { Navigate, useHref } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -96,7 +97,11 @@ export default function Register() {
     setError("");
     setSuccessSnackbarOpen(false);
   };
-
+  /*
+  useEffect(() => {
+    if (localStorage.getItem("name") !== null) navigate("/chat");
+  }, []);
+*/
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="static" color="default">
