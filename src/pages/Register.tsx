@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,7 +10,6 @@ import {
   AppBar,
   Toolbar,
 } from "@mui/material";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLockOutline } from "@mdi/js";
@@ -29,6 +29,28 @@ const theme = createTheme({
       '"Segoe UI Symbol"',
       "Fantasy",
     ].join(","),
+    h6: {
+      fontSize: "1.25rem",
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: "20px", // More rounded corners
+          padding: "8px 16px",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "20px", // More rounded corners
+          },
+        },
+      },
+    },
   },
 });
 
@@ -77,7 +99,7 @@ export default function Register() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
           <Typography variant="h6">Welcome</Typography>
         </Toolbar>
@@ -88,7 +110,7 @@ export default function Register() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#cdd2d4",
+          backgroundColor: "#fcfcfc",
         }}
       >
         <Box
@@ -97,9 +119,10 @@ export default function Register() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#e4eef7",
-            p: 7,
-            borderRadius: "10px",
+            backgroundColor: "#ddeaed",
+            p: 4,
+            borderRadius: "20px",
+            boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)", // Soft shadow
             gap: 2,
           }}
         >
@@ -108,7 +131,7 @@ export default function Register() {
             sx={{
               fontWeight: 600,
               mb: 2,
-              color: "#2196f3",
+              color: "primary.main",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -124,28 +147,26 @@ export default function Register() {
               size={1.5}
               color="#d5dfe3"
               style={{
-                position: "absolute",
-                top: -40,
-                left: "50%",
-                transform: "translateX(-50%)",
+                marginBottom: "16px", // Add some space between the icon and the text
               }}
-            />{" "}
+            />
             Please Enter Your Name
           </Typography>
           <TextField
-            label="Username"
+            label="Your Name"
             variant="outlined"
             fullWidth
             value={name}
             onChange={(event) => setName(event.target.value)}
+            sx={{ mt: 2 }} // Top margin for TextField
           />
           <Button
-            variant="outlined"
+            variant="contained"
             color="primary"
-            style={{ marginTop: "1rem" }}
+            sx={{ mt: 2 }} // Top margin for Button
             onClick={clickHandler}
           >
-            Enter
+            Let's Go
           </Button>
         </Box>
         <Snackbar
