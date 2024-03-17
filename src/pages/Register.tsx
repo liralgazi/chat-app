@@ -100,7 +100,7 @@ export default function Register() {
             Please Enter Your Name
           </Typography>
           <TextField
-            label="Enter your name"
+            label="Username"
             variant="outlined"
             fullWidth
             value={name}
