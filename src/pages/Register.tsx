@@ -1,84 +1,133 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { Navigate, useHref, useNavigate } from "react-router-dom";
+import {
+  Box,
+  Button,
+  Snackbar,
+  TextField,
+  Typography,
+  createTheme,
+  ThemeProvider,
+  Alert,
+} from "@mui/material";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      "-apple-system",
+      "BlinkMacSystemFont",
+      '"Segoe UI"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(","),
+  },
+});
 
 const validateName = (name: string) => {
-  //TODO move to validator.ts
   let isValid = true;
+  let error = "";
+
   if (name.length < 3) {
-    alert("Your name is too short!"); //TODO snackbar
+    error = "Your name is too short!";
     isValid = false;
-  }
-  if (name.length > 10) {
-    alert("Your name is too long!");
+  } else if (name.length > 10) {
+    error = "Your name is too long!";
     isValid = false;
-  }
-
-  const regex = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-
-  if (regex.test(name)) {
-    alert("Please enter a valid name!");
-    isValid = false;
+  } else {
+    const regex = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+    if (regex.test(name)) {
+      error = "Please enter a valid name!";
+      isValid = false;
+    }
   }
 
-  return isValid;
+  return { isValid, error };
 };
+
 export default function Register() {
   const [name, setName] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (localStorage.getItem("name") !== null) navigate("/chat");
-  }, []);
+  const [error, setError] = useState("");
+  const [successSnackbarOpen, setSuccessSnackbarOpen] = useState(false);
 
   const clickHandler = () => {
-    if (!validateName(name)) return; //TODO: validateName should return an error which
-    //the component should render!
-    localStorage.setItem("name", name);
+    const validationResult = validateName(name);
+    if (validationResult.isValid) {
+      setSuccessSnackbarOpen(true);
+      localStorage.setItem("name", name);
+      navigate("/chat");
+    } else {
+      setError(validationResult.error);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setError("");
+    //setSuccessSnackbarOpen(false);
   };
 
   return (
-    <Box
-      sx={{
-        height: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <ThemeProvider theme={theme}>
       <Box
         sx={{
+          height: "100%",
           display: "flex",
-          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#e4eef7",
-          p: 7,
-          borderRadius: "10px",
-          gap: 2,
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 600 }}>
-          Please Enter Your Name
-        </Typography>
-        <TextField
-          label="Enter something"
-          variant="outlined"
-          fullWidth
-          value={name}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            setName(event.target.value)
-          }
-        />
-        <Button
-          variant="outlined"
-          color="primary"
-          style={{ marginTop: "1rem" }}
-          onClick={clickHandler}
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#e4eef7",
+            p: 7,
+            borderRadius: "10px",
+            gap: 2,
+          }}
         >
-          Enter
-        </Button>
+          <Typography
+            variant="h5"
+            sx={{ fontWeight: 600, mb: 2, color: "#2196f3" }}
+          >
+            Please Enter Your Name
+          </Typography>
+          <TextField
+            label="Enter your name"
+            variant="outlined"
+            fullWidth
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
+          <Button
+            variant="contained"
+            color="primary"
+            style={{ marginTop: "1rem" }}
+            onClick={clickHandler}
+          >
+            Enter
+          </Button>
+        </Box>
+        <Snackbar
+          open={!!error}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          message={error}
+        />
+        <Snackbar
+          open={successSnackbarOpen}
+          autoHideDuration={6000}
+          onClose={handleCloseSnackbar}
+          message="Success! Your name has been validated."
+        />
       </Box>
-    </Box>
+    </ThemeProvider>
   );
 }
