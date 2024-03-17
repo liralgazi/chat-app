@@ -104,11 +104,6 @@ export default function Register() {
 */
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <Typography variant="h6">Welcome</Typography>
-        </Toolbar>
-      </AppBar>
       <Box
         sx={{
           height: "100vh",
