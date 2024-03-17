@@ -87,7 +87,7 @@ export default function Register() {
     if (validationResult.isValid) {
       setSuccessSnackbarOpen(true);
       localStorage.setItem("name", name);
-      navigate("/chat");
+      navigate("/chat", { state: { name } });
     } else {
       setError(validationResult.error);
     }
@@ -127,7 +127,7 @@ export default function Register() {
             backgroundColor: "#ddeaed",
             p: 4,
             borderRadius: "20px",
-            boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)", // Soft shadow
+            boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)",
             gap: 2,
           }}
         >
@@ -152,7 +152,7 @@ export default function Register() {
               size={1.5}
               color="#d5dfe3"
               style={{
-                marginBottom: "16px", // Add some space between the icon and the text
+                marginBottom: "16px",
               }}
             />
             Please Enter Your Name
@@ -163,12 +163,12 @@ export default function Register() {
             fullWidth
             value={name}
             onChange={(event) => setName(event.target.value)}
-            sx={{ mt: 2 }} // Top margin for TextField
+            sx={{ mt: 2 }}
           />
           <Button
             variant="contained"
             color="primary"
-            sx={{ mt: 2 }} // Top margin for Button
+            sx={{ mt: 2 }}
             onClick={clickHandler}
           >
             Let's Go
