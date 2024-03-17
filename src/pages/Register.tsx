@@ -1,184 +1,84 @@
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-import Logo from "../assets/logo.svg";
-import React, { useState } from "react";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
-import { registerRoute } from '../server/api'
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
+import { Navigate, useHref, useNavigate } from "react-router-dom";
 
-const Register: React.FC = () => {
-    const [values, setValues] = useState({
-        username: "",
-        email: "",
-        password: "",
-        confirmpassword: "",
-    });
-    const toastOptions = {
-        position: "bottom-right",
-        autoClose: 8000,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'dark',
-    };
+const validateName = (name: string) => {
+  //TODO move to validator.ts
+  let isValid = true;
+  if (name.length < 3) {
+    alert("Your name is too short!"); //TODO snackbar
+    isValid = false;
+  }
+  if (name.length > 10) {
+    alert("Your name is too long!");
+    isValid = false;
+  }
 
-    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-           // console.log("in validation", registerRoute)
-        if (handleValidation()) {
-            console.log("in validation");
-            const { password, confirmpassword, username, email } = values;
-           /*
-            try {
-                const { data } = await axios.post(registerRoute, {
-                    username,
-                    email,
-                    password,
-                });
-                console.log("Response data:", data);
-            } catch (error) {
-                console.error("Error occurred:", error);
-            }
-            */
-        }
-        
-    };
-    const handleValidation = () => {
-        const { password, confirmpassword, username, email } = values;
-        if (password !== confirmpassword) {
-            toast.error("Passwords do not match", toastOptions);
-            return false;
-        } else if (username.length < 3) {
-            toast.error("Username too short", toastOptions);
-            return false;
-        } else if (password.length < 8) {
-            toast.error("Password too short", toastOptions);
-            return false;
-        } else if (email === "") {
-            toast.error("Email required", toastOptions);
-            return false;
-        }
-        return true; // Return true if all validations pass
-    };
-   
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValues({ ...values, [event.target.name]: event.target.value });
-    };
-    
-    return (
-        <>
-            <FormContainer>
-                <form onSubmit={(event) => handleSubmit(event)}>
-                    <div className="brand">
-                        <img src={Logo} alt="Logo" />
-                        <h1>chatty</h1>
-                    </div>
-                    <input
-                        type="text"
-                        placeholder='Username'
-                        name="username"
-                        value={values.username}
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="email"
-                        placeholder='Email'
-                        name="email"
-                        value={values.email}
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="password"
-                        placeholder='Password'
-                        name="password"
-                        value={values.password}
-                        onChange={handleChange}
-                    />
-                    <input
-                        type="password"
-                        placeholder='Confirm Password'
-                        name="confirmpassword"
-                        value={values.confirmpassword}
-                        onChange={handleChange}
-                    />
-                    <button type='submit'>Create user</button>
-                    <span>
-                        Already have an account? <Link to="/login">Login</Link>
-                    </span>
-                </form>
-            </FormContainer>
-            <ToastContainer />
-        </>
-    );
+  const regex = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+
+  if (regex.test(name)) {
+    alert("Please enter a valid name!");
+    isValid = false;
+  }
+
+  return isValid;
 };
+export default function Register() {
+  const [name, setName] = useState("");
+  const navigate = useNavigate();
 
-const FormContainer = styled.div`
-  height: 100vh;
-  width: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-  align-items: center;
-  background-color: #131324;
-  .brand{
-    display:flex
-    align-items:center;
-    gap: 1rem;
-    justify-content: center;
-    img{
-        height: 5rem
+  useEffect(() => {
+    if (localStorage.getItem("name") !== null) navigate("/chat");
+  }, []);
 
-    }
-    h1{
-        color: white;
-        tex-transorm: uppercase;
-    }
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    background-color: #00000076;
-    border-radius: 2rem;
-    padding: 3rem 5rem;
-  }
-  input {
-    background-color: transparent;
-    padding: 1rem;
-    border: 0.1rem solid #4e0eff;
-    border-radius: 0.4rem;
-    color: white;
-    width: 100%;
-    font-size: 1rem;
-    &:focus {
-      border: 0.1rem solid #997af0;
-      outline: none;
-    }
-  }
-  button {
-    background-color: #4e0eff;
-    color: white;
-    padding: 1rem 2rem;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 0.4rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    &:hover {
-      background-color: #4e0eff;
-    }
-  }
-  span {
-    color: white;
-    text-transform: uppercase;
-    a {
-      color: #4e0eff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-  }
-`;
+  const clickHandler = () => {
+    if (!validateName(name)) return; //TODO: validateName should return an error which
+    //the component should render!
+    localStorage.setItem("name", name);
+  };
 
-export default Register
+  return (
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#e4eef7",
+          p: 7,
+          borderRadius: "10px",
+          gap: 2,
+        }}
+      >
+        <Typography variant="h5" sx={{ fontWeight: 600 }}>
+          Please Enter Your Name
+        </Typography>
+        <TextField
+          label="Enter something"
+          variant="outlined"
+          fullWidth
+          value={name}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            setName(event.target.value)
+          }
+        />
+        <Button
+          variant="outlined"
+          color="primary"
+          style={{ marginTop: "1rem" }}
+          onClick={clickHandler}
+        >
+          Enter
+        </Button>
+      </Box>
+    </Box>
+  );
+}

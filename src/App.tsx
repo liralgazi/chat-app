@@ -1,29 +1,21 @@
-import { useEffect, useState } from 'react'
-import './App.scss'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Register from "./pages/Register"
-import Chat from "./pages/Chat"
-import Login from "./pages/Login"
-import { remult } from 'remult'
-import { User } from './server/model/userModel'
+import "./App.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Register from "./pages/Register";
+import Chat from "./pages/Chat";
 
-// will return repo to users
-//const userRepo = remult.repo(User)
+import { Box } from "@mui/material";
+
 function App() {
-/*
-  const [users,setUsers] = useState<User[]>([]);
-  useEffect(()=>{
-    userRepo.find().then(setUsers);
-  },[]);
-*/
-  return <BrowserRouter>
-  <Routes>
-    <Route path="/Register" element={<Register/>}/>
-    <Route path="/Login" element={<Login/>}/>
-    <Route path="/" element={<Chat/>}/>
-  </Routes>
-  </BrowserRouter>
-
+  return (
+    <Box sx={{ height: "100vh", width: "100%" }}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/Register" element={<Register />} />
+          <Route path="/Chat" element={<Chat />} />
+        </Routes>
+      </BrowserRouter>
+    </Box>
+  );
 }
 
-export default App
+export default App;
