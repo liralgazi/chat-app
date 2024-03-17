@@ -6,10 +6,13 @@ import {
   Typography,
   createTheme,
   ThemeProvider,
-  Alert,
+  AppBar,
+  Toolbar,
 } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Icon from "@mdi/react";
+import { mdiLockOutline } from "@mdi/js";
 
 const theme = createTheme({
   typography: {
@@ -24,6 +27,7 @@ const theme = createTheme({
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
       '"Segoe UI Symbol"',
+      "Fantasy",
     ].join(","),
   },
 });
@@ -68,17 +72,23 @@ export default function Register() {
 
   const handleCloseSnackbar = () => {
     setError("");
-    //setSuccessSnackbarOpen(false);
+    setSuccessSnackbarOpen(false);
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6">Welcome</Typography>
+        </Toolbar>
+      </AppBar>
       <Box
         sx={{
-          height: "100%",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "#cdd2d4",
         }}
       >
         <Box
@@ -95,8 +105,31 @@ export default function Register() {
         >
           <Typography
             variant="h5"
-            sx={{ fontWeight: 600, mb: 2, color: "#2196f3" }}
+            sx={{
+              fontWeight: 600,
+              mb: 2,
+              color: "#2196f3",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              textAlign: "center",
+              position: "relative",
+              fontFamily: "Fantasy",
+              letterSpacing: 2,
+              fontSize: 35,
+            }}
           >
+            <Icon
+              path={mdiLockOutline}
+              size={1.5}
+              color="#d5dfe3"
+              style={{
+                position: "absolute",
+                top: -40,
+                left: "50%",
+                transform: "translateX(-50%)",
+              }}
+            />{" "}
             Please Enter Your Name
           </Typography>
           <TextField
