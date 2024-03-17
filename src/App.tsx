@@ -8,7 +8,7 @@ import { remult } from 'remult'
 import { User } from './server/model/userModel'
 
 // will return repo to users
-const userRepo = remult.repo(User)
+//const userRepo = remult.repo(User)
 function App() {
 /*
   const [users,setUsers] = useState<User[]>([]);
