@@ -1,7 +1,13 @@
 // MessageBox.tsx
 import React from "react";
-import { Box, Typography, Paper } from "@mui/material";
-import { Message } from "./Message";
+import { Typography, Paper } from "@mui/material";
+
+interface Message {
+  id: number;
+  text: string;
+  sender: string;
+  timestamp: Date;
+}
 
 interface MessageBoxProps {
   message: Message;
@@ -12,18 +18,21 @@ const MessageBox: React.FC<MessageBoxProps> = ({ message }) => {
     <Paper
       elevation={2}
       sx={{
-        padding: 2,
-        marginBottom: 2,
-        backgroundColor: "#f0f0f0", // A light grey background
+        maxWidth: "60%",
+        padding: "10px 15px",
+        margin: "10px auto",
+        backgroundColor: "#e0f7fa",
+        borderRadius: "20px",
+        wordBreak: "break-word",
       }}
     >
-      <Typography variant="subtitle1" gutterBottom>
-        {message.sender}
-      </Typography>
-      <Typography variant="body2" gutterBottom>
+      <Typography variant="body1" gutterBottom>
         {message.text}
       </Typography>
-      <Typography variant="caption" color="textSecondary">
+      <Typography
+        variant="caption"
+        sx={{ display: "block", textAlign: "right" }}
+      >
         {new Date(message.timestamp).toLocaleTimeString()}
       </Typography>
     </Paper>
