@@ -1,6 +1,6 @@
 import { remultExpress } from "remult/remult-express";
 import { createPostgresConnection } from "remult/postgres";
-import { Message } from '../server/model/messegeModel'
+import { Message } from './model/MessageModel'
 const host = "http://localhost:5000";
 export const registerRoute = `${host}/api/auth/register`;
 

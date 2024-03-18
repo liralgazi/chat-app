@@ -1,19 +1,12 @@
 import React from "react";
 import { Typography, Paper } from "@mui/material";
-
-interface Message {
-  id: number;
-  text: string;
-  sender: string;
-  timestamp: Date;
-}
+import { Message } from "./Message";
 
 interface MessageBoxProps {
   message: Message;
 }
 
 const MessageBox: React.FC<MessageBoxProps> = ({ message }) => {
-  // Parse the timestamp string to a Date object
   const date = new Date(message.timestamp);
 
   return (
@@ -31,10 +24,14 @@ const MessageBox: React.FC<MessageBoxProps> = ({ message }) => {
       <Typography variant="body1" gutterBottom>
         {message.text}
       </Typography>
-      <Typography
-        variant="caption"
-        sx={{ display: "block", textAlign: "right" }}
-      >
+      <Typography variant="body2" sx={{ color: "#888", textAlign: "right" }}>
+        <Typography
+          variant="caption"
+          sx={{ fontSize: "small", fontWeight: "bold" }}
+        >
+          {message.sender}
+        </Typography>
+        {" - "}
         {date.toLocaleTimeString()}
       </Typography>
     </Paper>

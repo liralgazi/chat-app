@@ -15,11 +15,11 @@ export class MessageModel {
     @Fields.number()
     sender_id = 0;
 
-    @Fields.date()
-    created_at = new Date();
+    @Fields.string()
+    sender = "";
 
     @Fields.date()
-    updated_at = new Date();
+    timestamp = new Date();
 }
 
 export { createPostgresConnection, remultExpress, MessageModel as Message };
