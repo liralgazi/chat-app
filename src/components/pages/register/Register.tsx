@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "../styles/RegisterStyles.scss";
+import { useState } from "react";
+import "./RegisterStyles.scss";
 import {
   Box,
   Button,
@@ -12,8 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLockOutline } from "@mdi/js";
-import { Navigate, useHref } from "react-router-dom";
-import { validateName } from "../validateName";
+import { validateName } from "../../helpers/validateName";
 
 const theme = createTheme({
   typography: {

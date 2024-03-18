@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import io from "socket.io-client";
 
-import "../styles/ChatStyles.scss";
+import "./ChatStyles.scss";
 
 import {
   Box,
@@ -12,8 +12,8 @@ import {
   Container,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import MessageBox from "./MessageBox";
-import { Message } from "./Message";
+import MessageBox from "../../helpers/MessageBox";
+import { Message } from "../../helpers/Message";
 
 const socket = io("http://localhost:3002", {
   transports: ["websocket", "polling"],
@@ -26,20 +26,6 @@ const Chat = () => {
   const name = location.state.name;
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
-
-  //fetching the messeges from the db
-  const fetchMessages = async () => {
-    try {
-      const response = await fetch("/api/messages");
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data: Message[] = await response.json();
-      setMessages(data);
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-    }
-  };
 
   useEffect(() => {
     socket.on("message", (message) => {

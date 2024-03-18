@@ -1,7 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "./pages/Register";
-import Chat from "./pages/Chat";
+import Register from "./components/pages/register/Register";
+import Chat from "./components/pages/chat/Chat";
 
 import { Box } from "@mui/material";
 
