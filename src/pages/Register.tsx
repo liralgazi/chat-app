@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLockOutline } from "@mdi/js";
 import { Navigate, useHref } from "react-router-dom";
+import { validateName } from "../validateName";
 
 const theme = createTheme({
   typography: {
@@ -46,34 +47,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-root": {
-            borderRadius: "20px", // More rounded corners
+            borderRadius: "20px",
           },
         },
       },
     },
   },
 });
-
-const validateName = (name: string) => {
-  let isValid = true;
-  let error = "";
-
-  if (name.length < 3) {
-    error = "Your name is too short!";
-    isValid = false;
-  } else if (name.length > 10) {
-    error = "Your name is too long!";
-    isValid = false;
-  } else {
-    const regex = /[0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
-    if (regex.test(name)) {
-      error = "Please enter a valid name!";
-      isValid = false;
-    }
-  }
-
-  return { isValid, error };
-};
 
 export default function Register() {
   const [name, setName] = useState("");

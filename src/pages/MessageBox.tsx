@@ -27,7 +27,7 @@ const MessageBox: React.FC<MessageBoxProps> = ({ message, currentUser }) => {
       </Typography>
       <Typography variant="body2" sx={{ color: "#888", textAlign: "right" }}>
         {message.sender === currentUser ? ( // Check if sender is the current user
-          `${date.toLocaleDateString()} ${date.toLocaleTimeString()}` // Display both date and time
+          `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
         ) : (
           <>
             <Typography

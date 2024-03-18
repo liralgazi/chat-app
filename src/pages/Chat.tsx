@@ -30,7 +30,6 @@ const Chat = () => {
       }
       const data: Message[] = await response.json();
       setMessages(data);
-      console.log(data);
     } catch (error) {
       console.error("Error fetching messages:", error);
     }
