@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+//chat.tsx without hooks:
 import io from "socket.io-client";
-
-import "./ChatStyles.scss";
-
+import MessageBox from "../../components/helpers/MessageBox";
+import { Message } from "../../components/helpers/Message";
 import {
   Box,
   Typography,
@@ -11,9 +10,10 @@ import {
   Stack,
   Container,
 } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { Message } from "../../components/helpers/Message";
-import MessageBox from "../../components/helpers/MessageBox";
+
+import "./ChatStyles.scss";
 const socket = io("http://localhost:3002", {
   transports: ["websocket", "polling"],
 });
