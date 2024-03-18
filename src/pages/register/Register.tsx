@@ -12,8 +12,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";
 import { mdiLockOutline } from "@mdi/js";
-import { validateName } from "../../helpers/validateName";
-
+import { validateName } from "../../components/helpers/validateName";
 const theme = createTheme({
   typography: {
     fontFamily: [

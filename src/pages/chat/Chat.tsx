@@ -12,9 +12,8 @@ import {
   Container,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import MessageBox from "../../helpers/MessageBox";
-import { Message } from "../../helpers/Message";
-
+import { Message } from "../../components/helpers/Message";
+import MessageBox from "../../components/helpers/MessageBox";
 const socket = io("http://localhost:3002", {
   transports: ["websocket", "polling"],
 });
