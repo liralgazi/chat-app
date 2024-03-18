@@ -61,7 +61,7 @@ const Chat = () => {
       <Stack className="chat-stack">
         <Box className="message-box">
           {messages.map((message) => (
-            <MessageBox key={message.id} message={message} />
+            <MessageBox key={message.id} message={message} currentUser={name} />
           ))}
         </Box>
         <Box

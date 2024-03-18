@@ -4,9 +4,10 @@ import { Message } from "./Message";
 
 interface MessageBoxProps {
   message: Message;
+  currentUser: string;
 }
 
-const MessageBox: React.FC<MessageBoxProps> = ({ message }) => {
+const MessageBox: React.FC<MessageBoxProps> = ({ message, currentUser }) => {
   const date = new Date(message.timestamp);
 
   return (
@@ -25,14 +26,19 @@ const MessageBox: React.FC<MessageBoxProps> = ({ message }) => {
         {message.text}
       </Typography>
       <Typography variant="body2" sx={{ color: "#888", textAlign: "right" }}>
-        <Typography
-          variant="caption"
-          sx={{ fontSize: "small", fontWeight: "bold" }}
-        >
-          {message.sender}
-        </Typography>
-        {" - "}
-        {date.toLocaleTimeString()}
+        {message.sender === currentUser ? ( // Check if sender is the current user
+          `${date.toLocaleDateString()} ${date.toLocaleTimeString()}` // Display both date and time
+        ) : (
+          <>
+            <Typography
+              variant="caption"
+              sx={{ fontSize: "small", fontWeight: "bold" }}
+            >
+              {message.sender}
+            </Typography>{" "}
+            - {`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
+          </>
+        )}
       </Typography>
     </Paper>
   );
