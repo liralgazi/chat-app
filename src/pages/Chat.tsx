@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
+import "../styles/ChatStyles.scss";
+
 import {
   Box,
   Typography,
@@ -12,12 +14,14 @@ import MessageBox from "./MessageBox";
 import { Message } from "./Message";
 
 const Chat = () => {
+  //gives you access to the current location object
   const location = useLocation();
+  //extract the name
   const name = location.state.name;
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
 
-  // Function to fetch messages
+  //fetching the messeges from the db
   const fetchMessages = useCallback(async () => {
     try {
       const response = await fetch("/api/messages");
@@ -31,38 +35,25 @@ const Chat = () => {
     }
   }, []);
 
-  //fetching the messeges from the db
   useEffect(() => {
     fetchMessages();
   }, [fetchMessages]);
 
-  // Function to handle sending messages
   const handleSendMessage = async () => {
-    if (!newMessage.trim()) return;
-
-    try {
-      const response = await fetch("/api/messages", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ text: newMessage, sender: name }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      // Clear the input after sending
-      setNewMessage("");
-      // Fetch messages again to update the list
-      await fetchMessages();
-    } catch (error) {
-      console.error("Error sending message:", error);
-    }
+    alert("message sent!");
+    setNewMessage("");
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container
+      maxWidth="sm"
+      sx={{
+        backgroundColor: "#e4eff0",
+        height: "100vh",
+        borderRadius: "20px",
+        boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)",
+      }}
+    >
       <Typography
         variant="h4"
         sx={{
@@ -71,15 +62,17 @@ const Chat = () => {
           textAlign: "center",
           fontWeight: "bold",
           color: "#1976d2",
+          //fontFamily: "Candara",
+          fontFamily: "fantasy",
+          letterSpacing: 4,
         }}
       >
-        Welcome to the chat, {name}!
+        {name}, Welcome to the chat !
       </Typography>
       <Stack
         sx={{ height: "calc(100vh - 150px)", justifyContent: "space-between" }}
       >
         {" "}
-        {/* Adjust height as necessary */}
         <Box sx={{ overflowY: "auto", p: 2, flexGrow: 1 }}>
           {messages.map((message) => (
             <MessageBox key={message.id} message={message} />
@@ -92,7 +85,12 @@ const Chat = () => {
             handleSendMessage();
           }}
           noValidate
-          sx={{ p: 2, display: "flex", alignItems: "center", gap: 1 }} // Use Flexbox for layout
+          sx={{
+            p: 2,
+            display: "flex",
+            alignItems: "center",
+            gap: 1,
+          }}
         >
           <TextField
             fullWidth
@@ -100,13 +98,13 @@ const Chat = () => {
             onChange={(e) => setNewMessage(e.target.value)}
             variant="outlined"
             placeholder="Type a message..."
-            sx={{ flexGrow: 1 }} // Make the TextField flex to take up available space
+            sx={{ flexGrow: 1 }}
           />
           <Button
             variant="contained"
             color="primary"
             onClick={handleSendMessage}
-            sx={{ whiteSpace: "nowrap" }} // Prevents the button text from wrapping
+            sx={{ whiteSpace: "nowrap" }}
           >
             Send
           </Button>

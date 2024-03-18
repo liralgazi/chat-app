@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../styles/RegisterStyles.scss";
 import {
   Box,
   Button,
@@ -7,8 +8,6 @@ import {
   Typography,
   createTheme,
   ThemeProvider,
-  AppBar,
-  Toolbar,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Icon from "@mdi/react";

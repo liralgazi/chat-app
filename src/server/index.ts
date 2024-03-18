@@ -1,9 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 //import dotenv from 'dotenv';
-import userRouter from '../server/routes/userRoutes'; 
-import { User } from './model/userModel';
-import { remult } from 'remult';
 import { api } from './api';
 
 const app = express()
