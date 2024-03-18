@@ -1,14 +1,14 @@
-.paper {
-    max-width: 60%;
-    padding: 10px 15px;
-    margin: 10px auto;
-    background-color: #d3ede0;
-    border-radius: 20px;
-    word-break: break-word;
-  }
-  
-  .caption {
-    display: block;
-    text-align: right;
-  }
-  
+.Paper.message-box-paper {
+  max-width: 60%;
+  padding: 10px 15px;
+  margin: 10px auto;
+  background-color: #d3ede0;
+  border-radius: 20px;
+  word-break: break-word;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // To simulate the elevation=2 effect
+}
+
+.message-caption {
+  display: block;
+  text-align: right;
+}

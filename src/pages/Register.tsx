@@ -103,52 +103,17 @@ export default function Register() {
 */
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#fcfcfc",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "#ddeaed",
-            p: 4,
-            borderRadius: "20px",
-            boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)",
-            gap: 2,
-          }}
-        >
+      <Box className="box">
+        <Box className="innerBox">
           <Typography
             variant="h5"
+            className="typography"
             sx={{
-              fontWeight: 600,
-              mb: 2,
-              color: "primary.main",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-              position: "relative",
-              fontFamily: "Fantasy",
-              letterSpacing: 2,
-              fontSize: 35,
+              fontFamily: "fantasy",
+              fontSize: 30,
             }}
           >
-            <Icon
-              path={mdiLockOutline}
-              size={1.5}
-              color="#d5dfe3"
-              style={{
-                marginBottom: "16px",
-              }}
-            />
+            <Icon path={mdiLockOutline} size={1.5} color="#d5dfe3" />
             Please Enter Your Name
           </Typography>
           <TextField
@@ -159,12 +124,7 @@ export default function Register() {
             onChange={(event) => setName(event.target.value)}
             sx={{ mt: 2 }}
           />
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ mt: 2 }}
-            onClick={clickHandler}
-          >
+          <Button variant="contained" color="primary" onClick={clickHandler}>
             Let's Go
           </Button>
         </Box>

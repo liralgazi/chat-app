@@ -1,3 +1,5 @@
+$fantasy-font: Fantasy, sans-serif;
+
 .box {
   height: 100vh;
   display: flex;
@@ -12,22 +14,23 @@
   justify-content: center;
   align-items: center;
   background-color: #ddeaed;
-  padding: 4;
+  padding: 4rem; 
   border-radius: 20px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
-  gap: 2;
+  gap: 2rem;
+  width: 80%; 
+  max-width: 600px; 
+  margin: auto; 
 }
-
 .typography {
-  font-weight: 600;
-  margin-bottom: 2;
-  color: primary;
+  font-weight: 500;
+  margin-bottom: 2rem; 
+  color: #2466e0; 
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   position: relative;
-  font-family: Fantasy;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-size: 35px;
 }

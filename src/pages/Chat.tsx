@@ -45,35 +45,12 @@ const Chat = () => {
   };
 
   return (
-    <Container
-      maxWidth="sm"
-      sx={{
-        backgroundColor: "#e4eff0",
-        height: "100vh",
-        borderRadius: "20px",
-        boxShadow: "0 4px 12px 0 rgba(0, 0, 0, 0.05)",
-      }}
-    >
-      <Typography
-        variant="h4"
-        sx={{
-          mb: 2,
-          p: 2,
-          textAlign: "center",
-          fontWeight: "bold",
-          color: "#1976d2",
-          //fontFamily: "Candara",
-          fontFamily: "fantasy",
-          letterSpacing: 4,
-        }}
-      >
-        {name}, Welcome to the chat !
+    <Container maxWidth="sm" className="chat-container">
+      <Typography variant="h4" className="chat-title">
+        {name}, Welcome to the chat!
       </Typography>
-      <Stack
-        sx={{ height: "calc(100vh - 150px)", justifyContent: "space-between" }}
-      >
-        {" "}
-        <Box sx={{ overflowY: "auto", p: 2, flexGrow: 1 }}>
+      <Stack className="chat-stack">
+        <Box className="message-box">
           {messages.map((message) => (
             <MessageBox key={message.id} message={message} />
           ))}
@@ -85,12 +62,7 @@ const Chat = () => {
             handleSendMessage();
           }}
           noValidate
-          sx={{
-            p: 2,
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-          }}
+          className="form-box"
         >
           <TextField
             fullWidth
@@ -98,13 +70,13 @@ const Chat = () => {
             onChange={(e) => setNewMessage(e.target.value)}
             variant="outlined"
             placeholder="Type a message..."
-            sx={{ flexGrow: 1 }}
+            className="text-field" // Add this class if needed for specific TextField styles in SCSS
           />
           <Button
             variant="contained"
             color="primary"
             onClick={handleSendMessage}
-            sx={{ whiteSpace: "nowrap" }}
+            className="send-button" // Add this class if needed for specific Button styles in SCSS
           >
             Send
           </Button>

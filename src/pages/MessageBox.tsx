@@ -1,6 +1,5 @@
 import React from "react";
 import { Typography, Paper } from "@mui/material";
-import "../styles/MessageBoxStyles.scss";
 
 interface Message {
   id: number;
