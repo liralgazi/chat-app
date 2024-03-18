@@ -42,16 +42,34 @@ const Chat = () => {
   };
 
   useEffect(() => {
-    socket.on("message", () => {
-      console.log("client socket connected");
+    socket.on("message", (message) => {
+      setMessages((prevMessages) => [...prevMessages, message]);
     });
+
+    const fetchMessages = async () => {
+      const response = await fetch("/api/messages");
+      const data = await response.json();
+      setMessages(data);
+    };
+
     fetchMessages();
+
+    return () => {
+      socket.off("message");
+    };
   }, []);
 
-  const handleSendMessage = async () => {
-    setNewMessage("");
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      const messageToSend = {
+        text: newMessage,
+        sender: name,
+        timestamp: new Date(),
+      };
+      socket.emit("message", messageToSend);
+      setNewMessage("");
+    }
   };
-
   return (
     <Container maxWidth="sm" className="chat-container">
       <Typography

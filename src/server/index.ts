@@ -3,25 +3,12 @@ import cors from 'cors';
 import routes from './routes'; 
 import http from 'http';
 import { Server } from 'socket.io';
+import { saveMessage, getAllMessages } from '../server/config/db'; // Adjust path as necessary
+
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {});
-
-io.on('connection', (socket) => {
-    console.log('A user connected');
-  
-    // Update this to receive the message data
-    socket.on('message', (message) => {
-      console.log("Message received: ", message);
-      // Broadcast the message to all clients
-      io.emit('message', message);
-    });
-  
-    socket.on('disconnect', () => {
-      console.log('A user disconnected');
-    });
-  });
 app.use(express.json());
 app.use('/api', routes);
 const corsOptions = {
@@ -29,7 +16,27 @@ const corsOptions = {
     allowedHeaders: ['Content-Type'], 
   };
 
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
+
 server.listen(3002, () => {
   console.log("Server started on port 3002");
+});
+
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('message', async (message) => {
+        console.log("Message received: ", message);
+        await saveMessage(message);
+        io.emit('message', message);
+    });
+
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
+});
+app.get('/api/messages', async (req, res) => {
+    const messages = await getAllMessages();
+    res.json(messages);
 });
