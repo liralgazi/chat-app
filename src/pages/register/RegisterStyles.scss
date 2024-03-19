@@ -4,8 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #93cbd8a9;
-
+ // background-color: #93cbd8a9;
   //background-image: url("../../assets/icons/light_blue_background2.jpg");
   //background-size: cover;
   //background-repeat: no-repeat;
@@ -16,8 +15,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ddeaed;
-  //background-color: #8fd0dfea;
+  //background-color: #ddeaed;
   padding: 4rem; 
   border-radius: 20px;
   box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.05);
@@ -29,7 +27,7 @@
 .typography {
   font-weight: 500;
   margin-bottom: 2rem; 
-  color: #2f6d7a; 
+  //color: #2f6d7a; 
   display: flex;
   flex-direction: column;
   align-items: center;
