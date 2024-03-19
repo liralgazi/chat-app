@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { Message } from "../helpers/Message";
-
-export const useFetchMessages = (roomName: string): Message[] => {
+import { useEffect, useState } from 'react';
+import { Message } from '../helpers/Message';
+export const useFetchMessages = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await fetch(`/api/messages/${roomName}`); // Adjusted for room-specific fetching
+        const response = await fetch("/api/messages");
         const data: Message[] = await response.json();
         setMessages(data);
       } catch (error) {
@@ -16,7 +15,7 @@ export const useFetchMessages = (roomName: string): Message[] => {
     };
 
     fetchMessages();
-  }, [roomName]);
+  }, []);
 
   return messages;
 };

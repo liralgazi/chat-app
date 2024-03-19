@@ -11,18 +11,31 @@
   text-align: center;
   font-weight: bold;
   color: #1976d2;
-  font-family: fantasy; 
+}
+.message-box {
+  //scroll
+  overflow-y: auto;
+  padding: 10px 15px;
+  border-radius: 20px;
+  word-break: break-word;
+  background-color: #e4eff0;
+
+  // green color for sent messages
+  &.sent-message {
+    background-color: rgba(36, 175, 83, 0.878);
+    color: #fff;
+}
+
+  // blue color for received messages
+  &.received-message {
+    background-color: #2a5c8d;
+    color: #f8f5f5;
+  }
 }
 
 .chat-stack {
   height: calc(100vh - 150px);
   justify-content: space-between;
-}
-
-.message-box {
-  overflow-y: auto;
-  padding: 2rem;
-  flex-grow: 1;
 }
 
 .form-box {
@@ -31,3 +44,17 @@
   align-items: center;
   gap: 1rem;
 }
+
+
+/*
+//with the toggle button
+.chat-container {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.send-button {
+  background-color: var(--button-bg-color);
+  color: var(--button-text-color);
+}
+*/

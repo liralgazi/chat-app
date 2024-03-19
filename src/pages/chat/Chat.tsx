@@ -1,5 +1,3 @@
-//chat.tsx without hooks:
-import io from "socket.io-client";
 import MessageBox from "../../components/helpers/MessageBox";
 import { Message } from "../../components/helpers/Message";
 import {
@@ -12,49 +10,42 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-
 import "./ChatStyles.scss";
-const socket = io("http://localhost:3002", {
-  transports: ["websocket", "polling"],
-});
+import { useWebSocket } from "../../components/hooks/useWebSocket";
+import { useFetchMessages } from "../../components/hooks/useFetchMessages";
+import { useNotificationPermission } from "../../components/hooks/useNotificationPermission";
+import { useSendMessage } from "../../components/hooks/useSendMessage";
+import { showNotification } from "../../components/helpers/showNotification";
 
 const Chat = () => {
   //gives you access to the current location object
   const location = useLocation();
   //extract the name
-  const name = location.state.name;
+  const name = location.state?.name || "Unknown";
   const [messages, setMessages] = useState<Message[]>([]);
-  const [newMessage, setNewMessage] = useState("");
+  const initialMessages = useFetchMessages();
 
-  useEffect(() => {
-    socket.on("message", (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
-    });
-
-    const fetchMessages = async () => {
-      const response = await fetch("/api/messages");
-      const data = await response.json();
-      setMessages(data);
-    };
-
-    fetchMessages();
-
-    return () => {
-      socket.off("message");
-    };
-  }, []);
-
-  const handleSendMessage = () => {
-    if (newMessage.trim()) {
-      const messageToSend = {
-        text: newMessage,
-        sender: name,
-        timestamp: new Date(),
-      };
-      socket.emit("message", messageToSend);
-      setNewMessage("");
+  const { sendMessage } = useWebSocket(name, (message: Message) => {
+    setMessages((prevMessages) => [...prevMessages, message]);
+    // Check if the document is not in focus
+    if (document.visibilityState === "hidden") {
+      showNotification(message);
     }
-  };
+  });
+
+  const { newMessage, setNewMessage, handleSendMessage } = useSendMessage({
+    sendMessage,
+    name,
+  });
+
+  //checks if permission granted from the browser
+  useNotificationPermission();
+
+  // Synchronize fetched messages with state
+  useEffect(() => {
+    setMessages(initialMessages);
+  }, [initialMessages]);
+
   return (
     <Container maxWidth="sm" className="chat-container">
       <Typography
@@ -66,7 +57,7 @@ const Chat = () => {
           letterSpacing: 3,
         }}
       >
-        {name}, Welcome to the chat!
+        {name}, Welcome to the chat! 👋
       </Typography>
       <Stack className="chat-stack">
         <Box className="message-box">

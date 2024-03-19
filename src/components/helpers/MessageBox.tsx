@@ -9,24 +9,27 @@ interface MessageBoxProps {
 
 const MessageBox: React.FC<MessageBoxProps> = ({ message, currentUser }) => {
   const date = new Date(message.timestamp);
+  const isCurrentUser = message.sender === currentUser;
+  const messageClass = isCurrentUser ? "sent-message" : "received-message";
 
   return (
     <Paper
       elevation={2}
+      className={`message-box ${messageClass}`}
       sx={{
         maxWidth: "60%",
         padding: "10px 15px",
         margin: "10px auto",
-        backgroundColor: "#d3ede0",
         borderRadius: "20px",
         wordBreak: "break-word",
+        alignSelf: isCurrentUser ? "flex-end" : "flex-start",
       }}
     >
       <Typography variant="body1" gutterBottom>
         {message.text}
       </Typography>
-      <Typography variant="body2" sx={{ color: "#888", textAlign: "right" }}>
-        {message.sender === currentUser ? ( // Check if sender is the current user
+      <Typography variant="body2" sx={{ color: "#888" }}>
+        {message.sender === currentUser ? (
           `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`
         ) : (
           <>
