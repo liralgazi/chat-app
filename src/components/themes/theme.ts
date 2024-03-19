@@ -23,7 +23,7 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          borderRadius: "20px", // More rounded corners
+          borderRadius: "20px", 
           padding: "8px 16px",
         },
       },

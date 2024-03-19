@@ -1,10 +1,12 @@
 import { Message } from "./Message";
+
 // Function to show desktop notification
 export const showNotification = (message: Message) => {
+  const chatIconPath = "../../assets/icons/chat_icon.png";
   if ("Notification" in window && Notification.permission === "granted") {
     new Notification("New Message", {
       body: `${message.sender}: ${message.text}`,
-      // Optionally, you can add an icon here
+      icon: chatIconPath,
     });
   } else {
     console.log(

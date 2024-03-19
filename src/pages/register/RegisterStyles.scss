@@ -1,11 +1,14 @@
-$fantasy-font: Fantasy, sans-serif;
 
 .box {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fcfcfc;
+  background-color: #93cbd8a9;
+
+  //background-image: url("../../assets/icons/light_blue_background2.jpg");
+  //background-size: cover;
+  //background-repeat: no-repeat;
 }
 
 .register-box {
@@ -14,9 +17,10 @@ $fantasy-font: Fantasy, sans-serif;
   justify-content: center;
   align-items: center;
   background-color: #ddeaed;
+  //background-color: #8fd0dfea;
   padding: 4rem; 
   border-radius: 20px;
-  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 7px 12px 0 rgba(0, 0, 0, 0.05);
   gap: 2rem;
   width: 80%; 
   max-width: 600px; 
@@ -25,7 +29,7 @@ $fantasy-font: Fantasy, sans-serif;
 .typography {
   font-weight: 500;
   margin-bottom: 2rem; 
-  color: #2466e0; 
+  color: #2f6d7a; 
   display: flex;
   flex-direction: column;
   align-items: center;

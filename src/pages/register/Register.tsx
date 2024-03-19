@@ -42,7 +42,7 @@ export default function Register() {
               fontSize: 50,
             }}
           >
-            <Icon path={mdiLockOutline} size={1.5} color="#d5dfe3" />
+            <Icon path={mdiLockOutline} size={2} color="#2f6d7a" />
             Please Enter Your Name
           </Typography>
           <TextField
@@ -53,7 +53,15 @@ export default function Register() {
             onChange={(event) => setName(event.target.value)}
             sx={{ mt: 2 }}
           />
-          <Button variant="contained" color="primary" onClick={clickHandler}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "#2f6d7a",
+              "&:hover": { backgroundColor: "#265e68" },
+            }}
+            onClick={clickHandler}
+          >
+            {" "}
             Let's Go
           </Button>
         </Box>

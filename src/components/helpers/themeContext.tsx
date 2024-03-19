@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-
+//dark/light mode
 type Theme = "light" | "dark";
 interface ThemeContextType {
   theme: Theme;

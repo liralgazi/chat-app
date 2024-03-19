@@ -1,16 +1,25 @@
-.chat-container {
-  background-color: #e4eff0;
+.big-box {
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #379e7f69;
+}
+
+.chat-container {
+  background-color: #c7e6e0fa;
+  height: 95vh;
   border-radius: 20px;
   box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
 }
+
 
 .chat-title {
   margin-bottom: 2rem;
   padding: 2rem;
   text-align: center;
   font-weight: bold;
-  color: #1976d2;
+  color: #2f6d7a;
 }
 .message-box {
   //scroll
@@ -18,7 +27,8 @@
   padding: 10px 15px;
   border-radius: 20px;
   word-break: break-word;
-  background-color: #e4eff0;
+  background-color: #c7e6e0fa;
+
 
   // green color for sent messages
   &.sent-message {
@@ -36,6 +46,7 @@
 .chat-stack {
   height: calc(100vh - 150px);
   justify-content: space-between;
+
 }
 
 .form-box {
@@ -43,6 +54,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+
 }
 
 

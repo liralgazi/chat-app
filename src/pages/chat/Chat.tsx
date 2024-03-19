@@ -47,52 +47,63 @@ const Chat = () => {
   }, [initialMessages]);
 
   return (
-    <Container maxWidth="sm" className="chat-container">
-      <Typography
-        variant="h4"
-        className="chat-title"
-        sx={{
-          fontFamily: "fantasy",
-          fontSize: 30,
-          letterSpacing: 3,
-        }}
-      >
-        {name}, Welcome to the chat! 👋
-      </Typography>
-      <Stack className="chat-stack">
-        <Box className="message-box">
-          {messages.map((message) => (
-            <MessageBox key={message.id} message={message} currentUser={name} />
-          ))}
-        </Box>
-        <Box
-          component="form"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSendMessage();
-          }}
-          noValidate
-          className="form-box"
-        >
-          <TextField
-            fullWidth
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-            variant="outlined"
-            placeholder="Type a message..."
-            className="text-field"
-          />
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSendMessage}
-            className="send-button"
+    <Box className="big-box">
+      <Box className="big-chat-box">
+        <Container maxWidth="sm" className="chat-container">
+          <Typography
+            variant="h4"
+            className="chat-title"
+            sx={{
+              fontFamily: "fantasy",
+              fontSize: 30,
+              letterSpacing: 3,
+            }}
           >
-            Send
-          </Button>
-        </Box>
-      </Stack>
-    </Container>
+            {name}, Welcome to the chat! 👋
+          </Typography>
+          <Stack className="chat-stack">
+            <Box className="message-box">
+              {messages.map((message) => (
+                <MessageBox
+                  key={message.id}
+                  message={message}
+                  currentUser={name}
+                />
+              ))}
+            </Box>
+            <Box
+              component="form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendMessage();
+              }}
+              noValidate
+              className="form-box"
+            >
+              <TextField
+                fullWidth
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
+                variant="outlined"
+                placeholder="Type a message..."
+                className="text-field"
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSendMessage}
+                className="send-button"
+                sx={{
+                  backgroundColor: "#2f6d7a",
+                }}
+              >
+                Send
+              </Button>
+            </Box>
+          </Stack>
+        </Container>
+      </Box>
+    </Box>
   );
 };
 
