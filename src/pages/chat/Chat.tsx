@@ -15,7 +15,7 @@ import {
   checkNotificationPermission,
   showNotification,
 } from "../../components/helpers/notifications";
-import DynamicMessages from "../../components/DynamicMessages";
+import DynamicMessages from "../../components/helpers/DynamicMessages";
 
 let limit = 20;
 let offset = 0;

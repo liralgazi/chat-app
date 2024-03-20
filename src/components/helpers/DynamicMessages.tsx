@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
-import MessageBox from "./helpers/MessageBox";
-import { Message } from "./helpers/Message";
+import MessageBox from "./MessageBox";
+import { Message } from "./Message";
 
 export default function DynamicMessages({
   messages,

@@ -38,11 +38,20 @@ export const getAllMessages = async () => {
         return [];
     }
 };
+
 // get chunk of messages if needed - through scrolling 
-export const getPageOfMessages = async (from:number, to:number) => {
+export const getPageOfMessages = async (limit: number, offset: number) => {
+    const query = `SELECT * FROM messages ORDER BY timestamp DESC LIMIT $1 OFFSET $2;`;
+    try {
+      const res = await client.query(query, [limit, offset]);
+      console.log("20")
 
-
-}
+      return res.rows;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  };
 /*
 const db = drizzle(client);
 
