@@ -1,4 +1,4 @@
-import "./styles/App.scss";
+import "./assets/styles/App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Chat from "./pages/chat/Chat";
 import Register from "./pages/register/Register";

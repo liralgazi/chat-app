@@ -12,7 +12,6 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./ChatStyles.scss";
 import { useWebSocket } from "../../components/hooks/useWebSocket";
-import { useFetchMessages } from "../../components/hooks/useFetchMessages";
 import { useNotificationPermission } from "../../components/hooks/useNotificationPermission";
 import { useSendMessage } from "../../components/hooks/useSendMessage";
 import { showNotification } from "../../components/helpers/showNotification";
@@ -23,15 +22,21 @@ const Chat = () => {
   //extract the name
   const name = location.state?.name || "Unknown";
   const [messages, setMessages] = useState<Message[]>([]);
-  const initialMessages = useFetchMessages();
 
-  const { sendMessage } = useWebSocket(name, (message: Message) => {
+  const onNewMessage = (message: Message) => {
     setMessages((prevMessages) => [...prevMessages, message]);
     // Check if the document is not in focus
     if (document.visibilityState === "hidden") {
       showNotification(message);
     }
-  });
+  };
+
+  const onReceiveAllMessages = (msgs: Message[]) => {
+    // TODO validations
+    setMessages(msgs);
+  };
+
+  const { sendMessage } = useWebSocket(onNewMessage, onReceiveAllMessages);
 
   const { newMessage, setNewMessage, handleSendMessage } = useSendMessage({
     sendMessage,
@@ -43,9 +48,20 @@ const Chat = () => {
 
   // Synchronize fetched messages with state
   useEffect(() => {
-    setMessages(initialMessages);
-  }, [initialMessages]);
+    const fetchMessages = async () => {
+      try {
+        const response = await fetch("/api/messages");
+        const data: Message[] = await response.json();
+        setMessages(data);
+      } catch (error) {
+        console.error("Failed to fetch messages:", error);
+      }
+    };
 
+    fetchMessages();
+  }, []);
+
+  console.log("lalala");
   return (
     <Box className="big-box">
       <Box className="big-chat-box">

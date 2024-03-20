@@ -9,7 +9,9 @@ export const useSendMessage = ({ sendMessage, name }: SendMessageProps) => {
   const [newMessage, setNewMessage] = useState("");
 
   const handleSendMessage = useCallback(() => {
+    // if the message is in the right format
     if (newMessage.trim()) {
+      console.log("in trim")
       sendMessage({
         text: newMessage,
         sender: name,
