@@ -5,3 +5,4 @@ export interface Message {
     timestamp: Date; 
   }
   
+  export type NewMessage = Omit<Message, 'id'>; 

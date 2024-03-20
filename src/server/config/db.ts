@@ -29,7 +29,7 @@ await client.connect();
   
 
 export const getAllMessages = async () => {
-    const query = `SELECT * FROM messages ORDER BY timestamp ASC;`;
+    const query = `SELECT * FROM messages ORDER BY timestamp DESC;`;
     try {
         const res = await client.query(query);
         return res.rows;
@@ -38,6 +38,11 @@ export const getAllMessages = async () => {
         return [];
     }
 };
+// get chunk of messages if needed - through scrolling 
+export const getPageOfMessages = async (from:number, to:number) => {
+
+
+}
 /*
 const db = drizzle(client);
 

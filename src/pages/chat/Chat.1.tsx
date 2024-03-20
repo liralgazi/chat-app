@@ -7,36 +7,25 @@ import {
   Stack,
   Container,
 } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./ChatStyles.scss";
 import { useWebSocket } from "../../components/hooks/useWebSocket";
-import {
-  checkNotificationPermission,
-  showNotification,
-} from "../../components/helpers/notifications";
+import { showNotification } from "../../components/helpers/notifications";
 import DynamicMessages from "../../components/DynamicMessages";
 
-let limit = 20;
-let offset = 0;
-
-const Chat = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+export const Chat = () => {
   const [newMessage, setNewMessage] = useState("");
+  const messages = useFetchMessages(); // Using the custom hook for fetching messages
 
-  //gives you access to the current location object
   const location = useLocation();
-  const name = location.state?.name || "Unknown"; //extract the name
+  const name = location.state?.name || "Unknown"; // Extract the name
 
-  const onNewMessage = (message: Message) => {
+  const { sendMessage } = useWebSocket((message: Message) => {
     setMessages((prevMessages) => [message, ...prevMessages]);
-    // Check if the document is not in focus
     if (document.visibilityState === "hidden") {
       showNotification(message);
     }
-  };
-
-  const { sendMessage } = useWebSocket(onNewMessage);
+  });
 
   const handleSendMessage = () => {
     let newTypedMsg: NewMessage = {
@@ -45,9 +34,8 @@ const Chat = () => {
       timestamp: new Date(),
     };
     sendMessage(newTypedMsg);
-    setNewMessage("");
   };
-
+  /*
   useEffect(() => {
     const fetchMessages = async () => {
       try {
@@ -58,11 +46,11 @@ const Chat = () => {
         console.error("Failed to fetch messages:", error);
       }
     };
-
+ 
     fetchMessages();
     checkNotificationPermission();
   }, []);
-
+*/
   return (
     <Box className="big-box">
       <Box className="big-chat-box">
@@ -115,5 +103,3 @@ const Chat = () => {
     </Box>
   );
 };
-
-export default Chat;

@@ -3,7 +3,7 @@ import cors from 'cors';
 import routes from './routes'; 
 import http from 'http';
 import { Server } from 'socket.io';
-import { saveMessage, getAllMessages } from '../server/config/db'; // Adjust path as necessary
+import { saveMessage, getAllMessages, getPageOfMessages } from '../server/config/db'; // Adjust path as necessary
 import dotenv from 'dotenv';
 
 const app = express();
@@ -28,12 +28,12 @@ server.listen(PORT, () => {
 
 io.on('connection', async (socket) => {
     console.log('A user connected');
-    try {
-        const messages = await getAllMessages();
-        io.emit('allMessages', messages)
-    } catch (err) {
-        console.log(err)
-    }
+    // try {
+    //     const messages = await getAllMessages();
+    //     io.emit('allMessages', messages)
+    // } catch (err) {
+    //     console.log(err)
+    // }
 
     socket.on('message', async (message) => {
         //console.log("Message received: ", message);
@@ -45,7 +45,19 @@ io.on('connection', async (socket) => {
         console.log('A user disconnected');
     });
 });
-app.get('/api/messages', async (req, res) => {
-    const messages = await getAllMessages();
+
+//eg: http://127.0.0.1:5173/api/messages&limit=20&offset=0
+app.get('/api/messages', async (req, res) => { // Optional params limit and offset
+    let messages;
+
+
+    if (typeof req.query.limit === 'string' && typeof req.query.offset === 'string') {
+        const limit = parseInt(req.query.limit, 10);
+        const offset = parseInt(req.query.offset, 10);
+
+        messages = getPageOfMessages(limit, offset)
+    }
+    
+    messages = await getAllMessages();
     res.json(messages);
 });

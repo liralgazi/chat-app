@@ -1,6 +1,6 @@
 import "./assets/styles/App.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Chat from "./pages/chat/Chat";
+import Chat from "./pages/chat/Chat.tsx";
 import Register from "./pages/register/Register";
 import { Box } from "@mui/material";
 import useDarkMode from "./components/hooks/useDarkMode.ts";
