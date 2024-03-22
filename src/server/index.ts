@@ -63,17 +63,18 @@ app.get('/api/messages', async (req, res) => {
     res.json(messages);
 });
 */
-app.get('/api/messages', async (req, res) => {
+
+app.get('/api/messages', async (req, res) => { 
     let messages;
-
+  
     if (typeof req.query.limit === 'string' && typeof req.query.offset === 'string') {
-        const limit = parseInt(req.query.limit, 10) || 20;
-        const offset = parseInt(req.query.offset, 10) || 0;
-
-        messages = await getPageOfMessages(limit, offset); //
+        const limit = parseInt(req.query.limit) || 20;
+        const offset = parseInt(req.query.offset) || 0;
+  
+        messages = await getPageOfMessages(limit, offset);
     } else {
-        messages = await getAllMessages(); 
+        messages = await getAllMessages();
     }
-
     res.json(messages);
-});
+  });
+  
