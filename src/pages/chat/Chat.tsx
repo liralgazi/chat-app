@@ -1,3 +1,4 @@
+// with loadMessages
 import { Message, NewMessage } from "../../components/helpers/Message";
 import {
   Box,
@@ -16,7 +17,7 @@ import {
   showNotification,
 } from "../../components/helpers/notifications";
 import DynamicMessages from "../../components/helpers/DynamicMessages";
-//import loadMoreMessages from "../../components/helpers/loadMoreMessages";
+import loadMoreMessages from "../../components/helpers/loadMoreMessages";
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
@@ -50,38 +51,17 @@ const Chat = () => {
     setNewMessage("");
   };
 
-  const loadMoreMessages = async () => {
-    if (loading || !hasMore) return;
-    setLoading(true);
-    console.log("Loading more messages...");
-    try {
-      const response = await fetch(`/api/messages?limit=20&offset=${offset}`);
-      const newMessages: Message[] = await response.json();
-      if (newMessages.length === 0) {
-        setHasMore(false);
-      } else {
-        setMessages((prevMessages) => {
-          // Create a set of existing IDs for quick lookup
-          const existingIds = new Set(prevMessages.map((m) => m.id));
-          // Filter out any new messages that already exist in the state
-          const filteredNewMessages = newMessages.filter(
-            (message) => !existingIds.has(message.id)
-          );
-          // Update the state with filtered new messages to prevent duplicate keys
-          return [...prevMessages, ...filteredNewMessages];
-        });
-        // Ensure offset is updated correctly to fetch the next set of messages
-        setOffset((prevOffset) => prevOffset + newMessages.length);
-      }
-    } catch (error) {
-      console.error("Failed to fetch messages:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
   useEffect(() => {
     // Load initial messages
-    loadMoreMessages();
+    loadMoreMessages(
+      offset,
+      setLoading,
+      setHasMore,
+      setMessages,
+      setOffset,
+      loading,
+      hasMore
+    );
     //check if there are notification permission
     checkNotificationPermission();
   }, []);
@@ -90,7 +70,15 @@ const Chat = () => {
     const handleScroll = () => {
       // Check if the user has scrolled to the top of the message box
       if (messageBox && messageBox.scrollTop < 100) {
-        loadMoreMessages();
+        loadMoreMessages(
+          offset,
+          setLoading,
+          setHasMore,
+          setMessages,
+          setOffset,
+          loading,
+          hasMore
+        );
       }
     };
 
@@ -99,7 +87,8 @@ const Chat = () => {
     return () => {
       messageBox?.removeEventListener("scroll", handleScroll);
     };
-  }, [loading, hasMore, offset, messages]);
+    // messages.length is added to trigger a re-check when messages update
+  }, [loading, hasMore, offset, messages.length]);
   return (
     <Box className="big-box">
       <Box className="big-chat-box">
