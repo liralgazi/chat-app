@@ -13,21 +13,20 @@ WORKDIR /frontend
 # Clone the frontend repository, install dependencies, and build the project
 RUN git clone https://github.com/liralgazi/chat-app.git .
 RUN npm install
-# RUN npm run build
-RUN npm run dev
+RUN npm run build
 
 # Stage 3: Setup the production environment
 FROM node:16
 WORKDIR /app
 
 # Copy the backend setup (including node_modules)
-COPY --from=backend-setup /backend ./backend
+COPY --from=backend-setup /backend .
 
 # Copy the frontend build output
-COPY --from=frontend-build /frontend/dist ./frontend/public
+COPY --from=frontend-build /frontend/build ./public
 
 # Expose the backend port
 EXPOSE 3002
 
-# Start the backend server using ts-node for TypeScript execution
-CMD ["npx", "ts-node", "/app/backend/src/index.ts"]
+# Start the backend server
+CMD ["npm", "start"]
