@@ -1,3 +1,4 @@
+/*
 import pg from 'pg';
 import { Message } from '../../components/helpers/Message';
 import dotenv from 'dotenv';
@@ -51,3 +52,4 @@ export const getPageOfMessages = async (limit: number, offset: number) => {
     }
   };
 
+*/
