@@ -6,8 +6,7 @@ const router = express.Router();
 router.get('/messages', async (req, res) => {
     try{
         const messages = await getAllMessages()
-        res.send(messages);
-        
+        res.send(messages);        
     }catch(err){
         console.log(err)
     }
