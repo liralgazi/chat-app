@@ -4,6 +4,7 @@ import routes from './routes';
 import http from 'http';
 import { Server } from 'socket.io';
 import { saveMessage, getAllMessages, getPageOfMessages } from '../server/config/db'; 
+
 import dotenv from 'dotenv';
 
 const app = express();
@@ -47,22 +48,7 @@ io.on('connection', async (socket) => {
 });
 
 
-/*
-//eg: http://127.0.0.1:5173/api/messages&limit=20&offset=0
-app.get('/api/messages', async (req, res) => { 
-    let messages;
 
-    if (typeof req.query.limit === 'string' && typeof req.query.offset === 'string') {
-        const limit = parseInt(req.query.limit) || 20 ;
-        const offset = parseInt(req.query.offset) || 0;
-
-        messages = getPageOfMessages(limit, offset)
-    }
-    
-    messages = await getAllMessages();
-    res.json(messages);
-});
-*/
 
 app.get('/api/messages', async (req, res) => { 
     let messages;

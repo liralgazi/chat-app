@@ -1,5 +1,5 @@
 import pg from 'pg';
-import { Message } from '../../../src/components/helpers/Message';
+import { Message } from '../../src/components/helpers/Message';
 import dotenv from 'dotenv';
 dotenv.config();
 

@@ -1,4 +1,3 @@
-// hooks/useForm.ts
 import { useState } from "react";
 import { validateName } from "../helpers/validateName";
 

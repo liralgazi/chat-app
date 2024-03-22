@@ -1,4 +1,3 @@
-// loadMoreMessages.tsx
 import { Message } from "./Message"; // Adjust the import path as necessary
 
 async function loadMoreMessages(
