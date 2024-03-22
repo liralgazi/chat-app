@@ -47,7 +47,7 @@ npm run build
 ```
 
 ## Usage 
-Once the development server is running, open your browser and navigate to the specified URL (usually http://localhost:3000) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
+Once the development server is running, open your browser and navigate to the specified URL (http://localhost:5173) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
 
 ## Dependencies
 - [React: JavaScript library for building user interfaces]
