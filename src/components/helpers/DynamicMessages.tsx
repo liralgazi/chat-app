@@ -9,8 +9,12 @@ const DynamicMessages = React.forwardRef<
 >(({ messages, name }, ref) => {
   return (
     <Box ref={ref} className="message-box">
-      {messages.map((message) => (
-        <MessageBox key={message.id} message={message} currentUser={name} />
+      {messages.map((message, index) => (
+        <MessageBox
+          key={`${message.id}-${index}`}
+          message={message}
+          currentUser={name}
+        />
       ))}
     </Box>
   );
