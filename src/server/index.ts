@@ -28,13 +28,7 @@ server.listen(PORT, () => {
 
 io.on('connection', async (socket) => {
     console.log('A user connected');
-    // try {
-    //     const messages = await getAllMessages();
-    //     io.emit('allMessages', messages)
-    // } catch (err) {
-    //     console.log(err)
-    // }
-
+ 
     socket.on('message', async (message) => {
         //console.log("Message received: ", message);
         await saveMessage(message);
