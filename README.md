@@ -1,32 +1,63 @@
-# React + TypeScript + Vite
+# Chat App Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend application for the Chat App project. It's built using TypeScript, Vite, Node.js, PostgreSQL, React, hooks, SCSS, and Material-UI.
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Introduction](#introduction)
+- [Features](#features)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Dependencies](#dependencies)
+- [License](#license)
 
-## Expanding the ESLint configuration
+## Introduction
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+The Chat App Frontend provides the user interface for a real-time chat application. It allows users to send and receive messages, view message history, and interact with other users in real-time.
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- Real-time messaging using Socket.IO
+- User authentication
+- Message display with Material-UI components
+- Integration with the backend server for message storage and retrieval
+
+## Setup
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/liralgazi/chat-app.git
+   
+2. Install dependencies:
+   ```bash
+   cd chat-app
+   npm install
+   ```
+3. Set up environment variables:
+Create a .env file in the root directory and add any necessary environment variables.
+
+4. Run the development server:
+  ```bash
+npm run dev
+```
+5. Build the production version:
+  ```bash
+npm run build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage 
+Once the development server is running, open your browser and navigate to the specified URL (usually http://localhost:3000) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
 
+## Dependencies
+- [React: JavaScript library for building user interfaces]
+- [React Router DOM: Declarative routing for React]
+- [Material-UI: React components for faster and easier web development]
+- [Socket.IO Client: Real-time bidirectional event-based communication library]
+- [dotenv: Loads environment variables from a .env file]
+- [cors: Middleware for handling Cross-Origin Resource Sharing (CORS)]
+
+## License
+This project is licensed under the ISC License.
+  
 
