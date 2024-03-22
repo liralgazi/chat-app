@@ -1,3 +1,4 @@
+/*
 import express from 'express';
 import cors from 'cors';
 import routes from './routes'; 
@@ -41,7 +42,7 @@ io.on('connection', async (socket) => {
 });
 
 
-/*
+
 //eg: http://127.0.0.1:5173/api/messages&limit=20&offset=0
 app.get('/api/messages', async (req, res) => { 
     let messages;
@@ -56,7 +57,7 @@ app.get('/api/messages', async (req, res) => {
     messages = await getAllMessages();
     res.json(messages);
 });
-*/
+
 
 app.get('/api/messages', async (req, res) => { 
     let messages;
@@ -71,4 +72,4 @@ app.get('/api/messages', async (req, res) => {
     }
     res.json(messages);
   });
-  
+  */

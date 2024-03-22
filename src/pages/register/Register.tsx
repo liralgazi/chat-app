@@ -16,7 +16,7 @@ import theme from "../../components/themes/theme";
 
 export default function Register() {
   const navigate = useNavigate();
-  const { name, setName, submitForm, error, setError } = useForm(navigate);
+  const { name, setName, submitForm, error } = useForm(navigate);
   const {
     showSnackbar: showSuccessSnackbar,
     closeSnackbar: handleCloseSnackbar,

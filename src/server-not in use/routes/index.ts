@@ -1,3 +1,4 @@
+/*
 import express from 'express';
 import { getAllMessages } from '../config/db';
 
@@ -14,3 +15,4 @@ router.get('/messages', async (req, res) => {
 
 
 export default router;
+*/
