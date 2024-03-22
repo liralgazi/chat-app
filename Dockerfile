@@ -13,7 +13,8 @@ WORKDIR /frontend
 # Clone the frontend repository, install dependencies, and build the project
 RUN git clone https://github.com/liralgazi/chat-app.git .
 RUN npm install
-RUN npm run build
+# RUN npm run build
+RUN npm run dev
 
 # Stage 3: Setup the production environment
 FROM node:16
