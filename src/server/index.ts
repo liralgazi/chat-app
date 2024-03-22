@@ -46,6 +46,8 @@ io.on('connection', async (socket) => {
     });
 });
 
+
+/*
 //eg: http://127.0.0.1:5173/api/messages&limit=20&offset=0
 app.get('/api/messages', async (req, res) => { 
     let messages;
@@ -58,5 +60,20 @@ app.get('/api/messages', async (req, res) => {
     }
     
     messages = await getAllMessages();
+    res.json(messages);
+});
+*/
+app.get('/api/messages', async (req, res) => {
+    let messages;
+
+    if (typeof req.query.limit === 'string' && typeof req.query.offset === 'string') {
+        const limit = parseInt(req.query.limit, 10) || 20;
+        const offset = parseInt(req.query.offset, 10) || 0;
+
+        messages = await getPageOfMessages(limit, offset); //
+    } else {
+        messages = await getAllMessages(); 
+    }
+
     res.json(messages);
 });

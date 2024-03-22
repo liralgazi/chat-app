@@ -1,6 +1,4 @@
 import pg from 'pg';
-//import { drizzle } from "drizzle-orm/node-postgres";
-//import { pgTable, serial, text, timestamp } from 'drizzle-orm/pg-core';
 import { Message } from '../../components/helpers/Message';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -52,37 +50,4 @@ export const getPageOfMessages = async (limit: number, offset: number) => {
       return [];
     }
   };
-/*
-const db = drizzle(client);
 
-const messagesTable = pgTable('messages', {
-    id: serial('id').primaryKey(),
-    text: text('text').notNull(),
-    sender: text('sender'),
-    timestamp: timestamp('timestamp').notNull()
- });
-
- export const saveMessage = async (message: Omit<Message, 'id'>): Promise<Message> => {
-  const [insertedMessage] = await db
-      .insertInto(messagesTable)
-      .values({
-          text: message.text,
-          sender: message.sender,
-          // Assume the database sets the timestamp; otherwise, use `new Date()`
-      })
-      .returning(messagesTable.all()) 
-      .execute();
-
-  return insertedMessage;
-};
-
-export const getAllMessages = async (): Promise<Message[]> => {
-  const messages = await db
-      .selectFrom(messagesTable)
-      .selectAll()
-      .orderBy(messagesTable.timestamp, 'ASC')
-      .execute();
-
-  return messages;
-};
-*/
