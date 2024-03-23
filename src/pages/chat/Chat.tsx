@@ -1,4 +1,3 @@
-// with loadMessages
 import { Message, NewMessage } from "../../components/helpers/Message";
 import {
   Box,
@@ -83,7 +82,6 @@ const Chat = () => {
     };
 
     messageBox?.addEventListener("scroll", handleScroll);
-
     return () => {
       messageBox?.removeEventListener("scroll", handleScroll);
     };
@@ -127,6 +125,12 @@ const Chat = () => {
                 variant="outlined"
                 placeholder="Type a message..."
                 className="text-field"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
               />
               <Button
                 variant="contained"
