@@ -39,11 +39,11 @@ Create a .env file in the root directory and add any necessary environment varia
 
 4. Run the development server:
   ```bash
-npm run dev
+   npm run dev
 ```
 5. Build the production version:
   ```bash
-npm run build
+   npm run build
 ```
 
 ## Usage 
@@ -60,4 +60,5 @@ Once the development server is running, open your browser and navigate to the sp
 ## License
 This project is licensed under the ISC License.
   
+![Screenshot 1]("/chat-app/public/screenshots/chat_darkmode.png")
 
