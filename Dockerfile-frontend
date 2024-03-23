@@ -1,22 +1,20 @@
-# Frontend Dockerfile
-# Stage 1 - Build
-FROM node:16 as build-stage
+# Use a Node.js base image
+FROM node:16
 
-WORKDIR /app
+# Set the working directory inside the container
+WORKDIR /app/frontend
 
-COPY package*.json ./
+# Copy package.json and package-lock.json to the working directory
+COPY package.json package-lock.json ./
 
+# Install dependencies
 RUN npm install
 
+# Copy the rest of the frontend source code to the working directory
 COPY . .
 
-RUN npm run build
+# Expose the port your app runs on
+EXPOSE 5173
 
-# Stage 2 - Serve
-FROM nginx:stable-alpine as production-stage
-
-COPY --from=build-stage /app/dist /usr/share/nginx/html
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# Define the command to run your app
+CMD ["npm", "run", "dev"]
