@@ -1,0 +1,17 @@
+# Use Node.js version 16 as the base image
+FROM node:16 as frontend-dev
+
+# Set the working directory in the Docker container
+WORKDIR /app
+
+# Clone your frontend repository
+RUN git clone https://github.com/liralgazi/chat-app.git .
+
+# Install dependencies
+RUN npm install
+
+# Expose the port on which the frontend server will run
+EXPOSE 5713
+
+# Start the frontend development server
+CMD ["npm", "run", "dev"]
