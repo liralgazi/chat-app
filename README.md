@@ -61,12 +61,16 @@ Once the development server is running, open your browser and navigate to the sp
 This project is licensed under the ISC License.
 
 ## Screenshots
-### lightmode:
-![Screenshot 1](public/screenshots/chat_lightmode.png)
+### lightmode
+#### register page: 
 ![Screenshot 1](public/screenshots/register_lightmode.png)
-### darkmode: 
-![Screenshot 1](public/screenshots/chat_darkmode.png)
+#### chat page: 
+![Screenshot 1](public/screenshots/chat_lightmode.png)
+### darkmode
+#### register page: 
 ![Screenshot 1](public/screenshots/register_darkmode.png)
+#### chat page: 
+![Screenshot 1](public/screenshots/chat_darkmode.png)
 ### desktop notification:
 ![Screenshot 1](public/screenshots/desktop_notification.png)
 
