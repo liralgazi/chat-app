@@ -68,8 +68,6 @@ This project is licensed under the ISC License.
 ![Screenshot 1](public/screenshots/chat_darkmode.png)
 ![Screenshot 1](public/screenshots/register_darkmode.png)
 ### desktop notification:
-![Screenshot 1](public/screenshots/register_lightmode.png)
-### darkmode: 
 ![Screenshot 1](public/screenshots/desktop_notificaion.png)
 
 
