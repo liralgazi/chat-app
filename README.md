@@ -10,6 +10,8 @@ This is the frontend application for the Chat App project. It's built using Type
 - [Usage](#usage)
 - [Dependencies](#dependencies)
 - [License](#license)
+- [Screenshots](#screenshots)
+
 
 ## Introduction
 
