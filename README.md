@@ -38,13 +38,13 @@ The Chat App Frontend provides the user interface for a real-time chat applicati
 Create a .env file in the root directory and add any necessary environment variables.
 
 4. Run the development server:
-  ```bash
+   ```bash
    npm run dev
-```
+   ```
 5. Build the production version:
-  ```bash
+   ```bash
    npm run build
-```
+   ```
 
 ## Usage 
 Once the development server is running, open your browser and navigate to the specified URL (http://localhost:5173) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
@@ -60,5 +60,5 @@ Once the development server is running, open your browser and navigate to the sp
 ## License
 This project is licensed under the ISC License.
   
-![Screenshot 1]("/chat-app/public/screenshots/chat_darkmode.png")
+![Screenshot 1]("./public/screenshots/chat_darkmode.png")
 
