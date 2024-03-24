@@ -1,4 +1,3 @@
-//mwssageBox.tsx
 import React from "react";
 import { Typography, Paper } from "@mui/material";
 import { Message } from "./Message";

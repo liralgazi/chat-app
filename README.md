@@ -12,7 +12,6 @@ This is the frontend application for the Chat App project. It's built using Type
 - [License](#license)
 - [Screenshots](#screenshots)
 
-
 ## Introduction
 
 The Chat App Frontend provides the user interface for a real-time chat application. It allows users to send and receive messages, view message history, and interact with other users in real-time.
@@ -30,14 +29,16 @@ The Chat App Frontend provides the user interface for a real-time chat applicati
 
    ```bash
    git clone https://github.com/liralgazi/chat-app.git
-   
+
+   ```
+
 2. Install dependencies:
    ```bash
    cd chat-app
    npm install
    ```
 3. Set up environment variables:
-Create a .env file in the root directory and add any necessary environment variables.
+   Create a .env file in the root directory and add any necessary environment variables.
 
 4. Run the development server:
    ```bash
@@ -48,11 +49,13 @@ Create a .env file in the root directory and add any necessary environment varia
    npm run build
    ```
 
-## Usage 
+## Usage
+
 Once the development server is running, open your browser and navigate to the specified URL (http://localhost:5173) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
 
 ## Dependencies
-- [React: TypeScript library for building user interfaces]
+
+- [React: JavaScript library for building user interfaces]
 - [React Router DOM: Declarative routing for React]
 - [Material-UI: React components for faster and easier web development]
 - [Socket.IO Client: Real-time bidirectional event-based communication library]
@@ -60,20 +63,31 @@ Once the development server is running, open your browser and navigate to the sp
 - [cors: Middleware for handling Cross-Origin Resource Sharing (CORS)]
 
 ## License
+
 This project is licensed under the ISC License.
 
 ## Screenshots
+
 ### lightmode
-#### register page: 
+
+#### register page:
+
 ![Screenshot 1](public/screenshots/register_lightmode.png)
-#### chat page: 
+
+#### chat page:
+
 ![Screenshot 1](public/screenshots/chat_lightmode.png)
+
 ### darkmode
-#### register page: 
+
+#### register page:
+
 ![Screenshot 1](public/screenshots/register_darkmode.png)
-#### chat page: 
+
+#### chat page:
+
 ![Screenshot 1](public/screenshots/chat_darkmode.png)
+
 ### desktop notification:
+
 ![Screenshot 1](public/screenshots/desktop_notification.png)
-
-

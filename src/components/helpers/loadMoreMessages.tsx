@@ -1,4 +1,4 @@
-import { Message } from "./Message"; // Adjust the import path as necessary
+import { Message } from "./Message";
 
 async function loadMoreMessages(
   offset: number,
