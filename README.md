@@ -52,7 +52,7 @@ Create a .env file in the root directory and add any necessary environment varia
 Once the development server is running, open your browser and navigate to the specified URL (http://localhost:5173) to access the Chat App frontend. Ensure that the backend server is also running to enable full functionality.
 
 ## Dependencies
-- [React: JavaScript library for building user interfaces]
+- [React: TypeScript library for building user interfaces]
 - [React Router DOM: Declarative routing for React]
 - [Material-UI: React components for faster and easier web development]
 - [Socket.IO Client: Real-time bidirectional event-based communication library]
